@@ -164,6 +164,297 @@ var rentalModifications = [{
   'rentalId': '3-sa-92',
   'pickupDate': '2015-12-05'
 }];
+// EXERCISE 1-Euro-Kilometers
+var rentalprice;// we want to compute the rental price for each car
+function ConvertDate(date1,date2)
+{
+  var firstDate=new Date(date1);
+  var secondDate=new Date(date2);
+  var day=1+Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+  return day;
+}
+
+function RentalPrice(cars,rentals)
+{
+  //var oneDay=24*60*60*1000;
+  for(var k=0;k<rentals.length;k++)
+  {
+    var carID=rentals[k].carId;
+    var km=rentals[k].distance;
+    var day=convertDate(rentals[k].returnDate,rentals[k].pickupDate);
+    for(var j=0;j<cars.length;i++)
+    {
+      if(cars[j].id==carID)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+    rentals[k].price=pricePerKm*km+pricePerDay*day;//compute the price
+  }
+  return rentals.price;
+Price(cars,rentals);
+
+//Exercise2-Drive more, pay less
+for(var i=0;i<rentals.length;i++)
+{
+  var carID=rentals[i].carId;
+  var km=rentals[i].distance;
+  var oneDay=24*60*60*1000;
+  
+  var day=ConvertDate(rentals[i].returnDate,rentals[i].pickupDate);
+  if(day>=1 && day<4)
+  {
+      for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*10/100 // the price decreases by 10% after 1 day
+  }
+  else if(day>=4 && day<10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*30/100 // the price decreases by 30% after 4 days
+  }
+  else if(day>=10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*50/100 // the price decreases by 50% after 10 days
+  }  
+  return rentals.price;
+  
+}
+   
+
+
+
+
+
+//EXERCISE 3-Give me all your money
+for(var i=0;i<rentals.length;i++)
+{
+  var carID=rentals[i].carId;
+  var km=rentals[i].distance;
+  var oneDay=24*60*60*1000;
+  
+  var day=ConvertDate(rentals[i].returnDate,rentals[i].pickupDate);
+  if(day>=1 && day<4)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*10/100 // the price decreases by 10% after 1 day
+ 
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance;// drivy takes the rest of the commission
+
+  }
+  else if(day>=4 && day<10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*30/100// the price decreases by 30% after 4 days
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance;// drivy takes the rest of the commission
+  }
+  else if(day>=10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*50/100// the price decreases by 50% after 4 days
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance;// drivy takes the rest of the commission
+  }
+}
+
+//Exercice 4 - The famous deductible
+for(var i=0;i<rentals.length;i++)
+{
+  var carID=rentals[i].carId;
+  var km=rentals[i].distance;
+  var oneDay=24*60*60*1000;
+  var ded=rentals[i].options.deductibleReduction;
+  var day=ConvertDate(rentals[i].returnDate,rentals[i].pickupDate);
+ if(ded==true)// if the driver chooses the deductible reduction option
+ {
+  if(day>=1 && day<4 )
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay+4;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*10/100 // the price decreases by 10% after 1 day
+ 
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance+150;
+      
+    }
+  else if(day>=4 && day<10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay+4;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*30/100// the price decreases by 30% after 4 days
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance+150;// drivy takes the rest of the commission
+  }
+  else if(day>=10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay+4;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*50/100// the price decreases by 50% after 4 days
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance+150;// drivy takes the rest of the commission
+  }
+ } 
+ else if(ded==false)// if the driver does not choose the deductible reduction option
+ {
+  if(day>=1 && day<4 )
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*10/100 // the price decreases by 10% after 1 day
+ 
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance+800;
+  
+
+  }
+  else if(day>=4 && day<10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*30/100// the price decreases by 30% after 4 days
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance+800;// drivy takes the rest of the commission
+  }
+  else if(day>=10)
+  {
+    for(var j=0;j<cars.length;j++)
+    {
+      if(carID==cars[j].id)
+      {
+        var pricePerKm=cars[j].pricePerKm;
+        var pricePerDay=cars[j].pricePerDay;
+      }
+    }
+
+    rentals[i].price=pricePerKm*km+pricePerDay*day;
+    rentals[i].price=rentals[i].price-rentals[i].price*50/100// the price decreases by 50% after 4 days
+    var commission=rentals[i].price*0.3;// the commission is 30%
+    rentals[i].commission.assistance=1*day;// 1€ per day
+    rentals[i].commission.insurance=commission*0.5;// the insurance is half the commission
+    rentals[i].drivy=commission*0.5-rentals[i].commission.assistance+800;// drivy takes the rest of the commission
+  }
+
+ }
+  
+}
+//Exercise 5 - Pay the actors
+for(var i=0;i<actors.length;i++)
+{
+  
+}
 
 console.log(cars);
 console.log(rentals);
