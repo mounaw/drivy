@@ -451,10 +451,71 @@ for(var i=0;i<rentals.length;i++)
   
 }
 //Exercise 5 - Pay the actors
-for(var i=0;i<actors.length;i++)
+var i=0;
+for(i=0; i<rentals.length;i++)
 {
-  
+	var dr,ins,com;// dr:drivy  ins:insurance com:commission
+	var date = new Date(rentals[i].pickupDate);
+	var begin = date.getTime();
+	var datef = new Date(rentals[i].returnDate);
+	var end = datef.getTime();
+	tmp = (end - begin)  /60 /60 /24 /1000 + 1;  
+	var pDay = cars[i].pricePerDay;
+	if((1<tmp) && (tmp<=4))
+	{
+		pDay = cars[i].pricePerDay - ((cars[i].pricePerDay*10)/100);
+	}
+	else if((4<tmp) && (tmp<=10))
+	{
+		pDay = cars[i].pricePerDay - ((cars[i].pricePerDay*30)/100);
+	}
+	else if(tmp>10)
+	{
+		pDay = cars[i].pricePerDay - ((cars[i].pricePerDay*50)/100);
+	}
+	price = tmp * priceDay + cars[i].pricePerKm * rentals[i].distance;
+	com = (price*30)/100;
+	console.log("comission: " +com);
+	ins = com/2;
+	console.log("insurance: " + ins);
+	Assist = 1*tmp;
+	console.log("road assistance: " + Assist);
+	if(rentals[i].options.deductibleReduction == true)
+	{
+		dr = com - (ins + Assist) + 4*tmp;
+		console.log("drivy with option: " + dr + "\n")
+	}
+	else
+	{
+		dr = com - (ins + Assist);
+		console.log("drivy wihtout option: " + dr + "\n\n")
+	}
+		
+	if(rentals[i].options.deductibleReduction == true)
+	{
+		var dDriver = price + 4*tmp;
+		console.log(" driver debit:" + dDriver);
+	}
+	else
+	{
+		var dDriver = price;
+		console.log("driver debit:" + dDriver);
+	}	
+		
+	
+		var dOwner = price - com;
+		console.log(" owner credit: " + dOwner);
+		
+		var dInsurance = ins;
+		console.log(" insurance credit: " + dInsurance);
+		
+		var dAssistance = roadsideAssist;
+		console.log(" assistance credit: " + dAssistance);
+		
+		var dDrivy = dr;
+		console.log(" drivy credit: " + dDrivy + "\n\n");
 }
+
 
 console.log(cars);
 console.log(rentals);
